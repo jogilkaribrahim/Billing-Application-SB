@@ -2,10 +2,14 @@ package com.backend.invoice.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "invoices")
@@ -14,6 +18,9 @@ public class Invoice {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
+
+@JoinColumn
+private List<Products> products;
 
 @Column(name = "full_name")
 private String FullName;
@@ -69,226 +76,160 @@ private String Date;
 
 
 
-    public Invoice(){}
+public Long getId() {
+    return id;
+}
 
-    
-    public Invoice(
-        String fullname,
-        String address,
-        String state,
-        String Particular,
-        String date,
-        String panNo,
-        Number registrationNo,
-        Number stateCode,
-        Number weight,
-        Number unit,
-        Number rate,
-        Number taxableValue,
-        Number transport,
-        Number sGSTAmount,
-        Number cGSTAmount,
-        Number iCGSTAmount,
-        Number finalTotal
-){
-this.FullName = fullname;
-this.Address = address;
-this.RegistrationNo = registrationNo;
-this.State = state;
-this.StateCode = stateCode;
-this.PanNo = panNo;
-this.Particular = Particular;   
-this.Weight = weight;
-this.Unit = unit;
-this.Rate = rate;
-this.TaxableValue = taxableValue;
-this.Transport = transport;
-this.SGSTAmount = sGSTAmount;
-this.CGSTAmount = cGSTAmount;
-this.ICGSTAmount = iCGSTAmount;
-this.FinalTotal = finalTotal;
-this.Date = date;
+public void setId(Long id) {
+    this.id = id;
+}
+
+public String getFullName() {
+    return FullName;
+}
+
+public void setFullName(String fullName) {
+    FullName = fullName;
+}
+
+public String getAddress() {
+    return Address;
+}
+
+public void setAddress(String address) {
+    Address = address;
+}
+
+public Number getRegistrationNo() {
+    return RegistrationNo;
+}
+
+public void setRegistrationNo(Number registrationNo) {
+    RegistrationNo = registrationNo;
+}
+
+public String getState() {
+    return State;
+}
+
+public void setState(String state) {
+    State = state;
+}
+
+public Number getStateCode() {
+    return StateCode;
+}
+
+public void setStateCode(Number stateCode) {
+    StateCode = stateCode;
+}
+
+public String getPanNo() {
+    return PanNo;
+}
+
+public void setPanNo(String panNo) {
+    PanNo = panNo;
+}
+
+public List<Products> getProducts() {
+    return products;
+}
+
+@OneToMany(targetEntity=Products.class, mappedBy="invoice", fetch=FetchType.EAGER)
+public void setProducts(List<Products> products) {
+    this.products = products;
 }
 
 
-    public Long getId() {
-        return id;
-    }
+public String getParticular() {
+    return Particular;
+}
 
+public void setParticular(String particular) {
+    Particular = particular;
+}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+public Number getWeight() {
+    return Weight;
+}
 
+public void setWeight(Number weight) {
+    Weight = weight;
+}
 
-    public String getFullName() {
-        return FullName;
-    }
+public Number getUnit() {
+    return Unit;
+}
 
+public void setUnit(Number unit) {
+    Unit = unit;
+}
 
-    public void setFullName(String fullName) {
-        FullName = fullName;
-    }
+public Number getRate() {
+    return Rate;
+}
 
+public void setRate(Number rate) {
+    Rate = rate;
+}
 
-    public String getAddress() {
-        return Address;
-    }
+public Number getTaxableValue() {
+    return TaxableValue;
+}
 
+public void setTaxableValue(Number taxableValue) {
+    TaxableValue = taxableValue;
+}
 
-    public void setAddress(String address) {
-        Address = address;
-    }
+public Number getTransport() {
+    return Transport;
+}
 
+public void setTransport(Number transport) {
+    Transport = transport;
+}
 
-    public Number getRegistrationNo() {
-        return RegistrationNo;
-    }
+public Number getSGSTAmount() {
+    return SGSTAmount;
+}
 
+public void setSGSTAmount(Number sGSTAmount) {
+    SGSTAmount = sGSTAmount;
+}
 
-    public void setRegistrationNo(Number registrationNo) {
-        RegistrationNo = registrationNo;
-    }
+public Number getCGSTAmount() {
+    return CGSTAmount;
+}
 
+public void setCGSTAmount(Number cGSTAmount) {
+    CGSTAmount = cGSTAmount;
+}
 
-    public String getState() {
-        return State;
-    }
+public Number getICGSTAmount() {
+    return ICGSTAmount;
+}
 
+public void setICGSTAmount(Number iCGSTAmount) {
+    ICGSTAmount = iCGSTAmount;
+}
 
-    public void setState(String state) {
-        State = state;
-    }
+public Number getFinalTotal() {
+    return FinalTotal;
+}
 
+public void setFinalTotal(Number finalTotal) {
+    FinalTotal = finalTotal;
+}
 
-    public Number getStateCode() {
-        return StateCode;
-    }
+public String getDate() {
+    return Date;
+}
 
+public void setDate(String date) {
+    Date = date;
+}
 
-    public void setStateCode(Number stateCode) {
-        StateCode = stateCode;
-    }
-
-
-    public String getPanNo() {
-        return PanNo;
-    }
-
-
-    public void setPanNo(String panNo) {
-        PanNo = panNo;
-    }
-
-
-    public String getParticular() {
-        return Particular;
-    }
-
-
-    public void setParticular(String particular) {
-        Particular = particular;
-    }
-
-
-    public Number getWeight() {
-        return Weight;
-    }
-
-
-    public void setWeight(Number weight) {
-        Weight = weight;
-    }
-
-
-    public Number getUnit() {
-        return Unit;
-    }
-
-
-    public void setUnit(Number unit) {
-        Unit = unit;
-    }
-
-
-    public Number getRate() {
-        return Rate;
-    }
-
-
-    public void setRate(Number rate) {
-        Rate = rate;
-    }
-
-
-    public Number getTaxableValue() {
-        return TaxableValue;
-    }
-
-
-    public void setTaxableValue(Number taxableValue) {
-        TaxableValue = taxableValue;
-    }
-
-
-    public Number getTransport() {
-        return Transport;
-    }
-
-
-    public void setTransport(Number transport) {
-        Transport = transport;
-    }
-
-
-    public Number getSGSTAmount() {
-        return SGSTAmount;
-    }
-
-
-    public void setSGSTAmount(Number sGSTAmount) {
-        SGSTAmount = sGSTAmount;
-    }
-
-
-    public Number getCGSTAmount() {
-        return CGSTAmount;
-    }
-
-
-    public void setCGSTAmount(Number cGSTAmount) {
-        CGSTAmount = cGSTAmount;
-    }
-
-
-    public Number getICGSTAmount() {
-        return ICGSTAmount;
-    }
-
-
-    public void setICGSTAmount(Number iCGSTAmount) {
-        ICGSTAmount = iCGSTAmount;
-    }
-
-
-    public Number getFinalTotal() {
-        return FinalTotal;
-    }
-
-
-    public void setFinalTotal(Number finalTotal) {
-        FinalTotal = finalTotal;
-    }
-
-
-    public String getDate() {
-        return Date;
-    }
-
-
-    public void setDate(String date) {
-        Date = date;
-    }
 
 
 
